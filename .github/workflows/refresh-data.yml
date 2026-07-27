@@ -1,0 +1,38 @@
+name: Refresh data
+
+on:
+  schedule:
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Scrape sources
+        run: node scripts/scrape.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "perigee-bot"
+          git config user.email "actions@github.com"
+          if git diff --quiet -- public/data/perigee-data.json; then
+            echo "No data change today."
+            exit 0
+          fi
+          git add public/data/perigee-data.json
+          git commit -m "data: refresh $(date -u +%Y-%m-%d)"
+          git push
