@@ -1,0 +1,55 @@
+{
+  "generatedAt": "2026-07-26T00:00:00.000Z",
+  "_note": "Seed file. Overwritten by scripts/scrape.mjs via the Refresh data workflow.",
+  "satelliteCensus": {
+    "asOf": "2026-07-25",
+    "source": "planet4589.org",
+    "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
+    "totalLaunchedEver": 12620,
+    "totalInOrbit": 10881,
+    "totalWorking": 10865,
+    "broadbandWorking": 10225,
+    "dtcWorking": 640,
+    "broadbandByVersion": [
+      { "label": "V1.0", "value": 657, "color": "#A7C8FB" },
+      { "label": "V1.5", "value": 2575, "color": "#5E9CF8" },
+      { "label": "V2 Mini", "value": 6993, "color": "#2F66D8" }
+    ]
+  },
+  "starshieldCensus": {
+    "asOf": "2026-07-16",
+    "source": "planet4589.org",
+    "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
+    "totalLaunchedEver": 245,
+    "totalInOrbit": 241,
+    "totalWorking": 241
+  },
+  "boosterSnapshot": {
+    "asOf": "2026-07-09",
+    "recordSerial": "B1067",
+    "recordFlights": 36,
+    "operationalCount": 20,
+    "medianFlights": 14,
+    "fastestSerial": "B1088",
+    "fastestTurnaroundDays": 9,
+    "medianTurnaroundDays": 28
+  },
+  "yearlyLaunchData": [
+    { "year": 2010, "internal": 0, "customer": 2, "confidence": "estimated" },
+    { "year": 2012, "internal": 0, "customer": 2, "confidence": "estimated" },
+    { "year": 2013, "internal": 0, "customer": 3, "confidence": "estimated" },
+    { "year": 2014, "internal": 0, "customer": 6, "confidence": "estimated" },
+    { "year": 2015, "internal": 0, "customer": 7, "confidence": "estimated" },
+    { "year": 2016, "internal": 0, "customer": 8, "confidence": "estimated" },
+    { "year": 2017, "internal": 0, "customer": 18, "confidence": "estimated" },
+    { "year": 2018, "internal": 0, "customer": 21, "confidence": "estimated" },
+    { "year": 2019, "internal": 2, "customer": 11, "confidence": "estimated" },
+    { "year": 2020, "internal": 14, "customer": 12, "confidence": "estimated" },
+    { "year": 2021, "internal": 19, "customer": 12, "confidence": "estimated" },
+    { "year": 2022, "internal": 34, "customer": 27, "confidence": "estimated" },
+    { "year": 2023, "internal": 63, "customer": 35, "confidence": "estimated" },
+    { "year": 2024, "internal": 89, "customer": 45, "confidence": "verified" },
+    { "year": 2025, "internal": 118, "customer": 47, "confidence": "partial" },
+    { "year": 2026, "internal": 70, "customer": 18, "confidence": "estimated" }
+  ]
+}

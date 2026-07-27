@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Perigee</title>
+
+    <!-- viewport-fit=cover lets the app paint under the notch and home
+         indicator; the CSS below re-inserts the safe areas as padding. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+    />
+    <meta name="description" content="SpaceX launch, Starlink and Starship tracker." />
+
+    <!-- iOS home-screen app. "standalone" removes Safari's chrome so it
+         opens like a native app once added to the home screen. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Perigee" />
+    <meta name="theme-color" content="#0A0C10" />
+
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+    <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0a0c10;
+        /* Prevent the rubber-band scroll that makes a PWA feel like a page. */
+        overscroll-behavior: none;
+      }
+      body {
+        /* Respect the notch and home indicator in standalone mode. */
+        padding: env(safe-area-inset-top) env(safe-area-inset-right)
+          env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+      #root {
+        min-height: 100vh;
+      }
+      /* Stop iOS from auto-enlarging text in landscape. */
+      * {
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
