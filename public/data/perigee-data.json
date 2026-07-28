@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T02:42:49.168Z",
+  "generatedAt": "2026-07-28T02:51:48.971Z",
   "satelliteCensus": {
     "asOf": "2026-07-25",
     "source": "planet4589.org",
@@ -8,7 +8,24 @@
     "totalInOrbit": 10881,
     "totalWorking": 10865,
     "broadbandWorking": 10225,
-    "dtcWorking": 640
+    "dtcWorking": 640,
+    "broadbandByVersion": [
+      {
+        "label": "V1.0",
+        "value": 657,
+        "color": "#A7C8FB"
+      },
+      {
+        "label": "V1.5",
+        "value": 2575,
+        "color": "#5E9CF8"
+      },
+      {
+        "label": "V2 Mini",
+        "value": 6993,
+        "color": "#2F66D8"
+      }
+    ]
   },
   "starshieldCensus": {
     "asOf": "2026-07-25",
