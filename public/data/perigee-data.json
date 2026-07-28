@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T02:51:48.971Z",
+  "generatedAt": "2026-07-28T03:14:47.790Z",
   "satelliteCensus": {
     "asOf": "2026-07-25",
     "source": "planet4589.org",
@@ -158,16 +158,13 @@
     }
   ],
   "boosterSnapshot": {
-    "asOf": "2026-07-09",
+    "asOf": "2026-07-28",
     "recordSerial": "B1067",
     "recordFlights": 36,
-    "operationalCount": 20,
-    "medianFlights": 14,
+    "operationalCount": 22,
+    "medianFlights": 17,
     "fastestSerial": "B1088",
     "fastestTurnaroundDays": 9,
-    "medianTurnaroundDays": 28
-  },
-  "partial": [
-    "boosterSnapshot"
-  ]
+    "medianTurnaroundDays": 23
+  }
 }
