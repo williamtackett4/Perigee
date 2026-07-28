@@ -284,31 +284,79 @@ async function scrapeCadence() {
 }
 
 async function scrapeBoosters() {
-  // Reusable Falcon first stages, most-flown first.
-  const url =
-    "https://ll.thespacedevs.com/2.3.0/launchers/" +
-    "?search=Falcon&limit=100&ordering=-flights";
-  const data = await getJson(url);
-  const cores = (data.results || []).filter((c) => c.serial_number?.startsWith("B10"));
+  // Notes on this endpoint, learned the hard way:
+  //  - `search=Falcon` returns zero rows here, so page through instead and
+  //    filter client-side on the B10xx serial prefix.
+  //  - `mode=list` omits `flights` entirely; `mode=normal` is required.
+  //  - `status` comes back as a bare string in normal mode but as an object
+  //    in some modes, so read both shapes.
+  const cores = [];
+  for (let page = 0; page < 3; page++) {
+    const url =
+      "https://ll.thespacedevs.com/2.3.0/launchers/" +
+      `?mode=normal&limit=100&offset=${page * 100}&ordering=-flights`;
+    const data = await getJson(url);
+    const results = data.results || [];
+    cores.push(...results.filter((c) => (c.serial_number || "").startsWith("B10")));
+    if (!data.next) break;
+    await sleep(1200);
+  }
   if (!cores.length) throw new Error("boosters: none returned");
 
-  const flights = cores.map((c) => c.flights || 0).filter((n) => n > 0);
-  const active = cores.filter((c) => c.status === "active");
-  const leader = cores[0];
+  const statusOf = (c) => c.status?.name ?? c.status ?? "";
+  const withFlights = cores.filter((c) => typeof c.flights === "number" && c.flights > 0);
+  if (!withFlights.length) throw new Error("boosters: no flight counts (wrong mode?)");
+
+  const leader = withFlights.reduce((a, b) => (b.flights > a.flights ? b : a));
+  const active = cores.filter((c) => statusOf(c) === "active");
 
   const median = (arr) => {
     const s = [...arr].sort((a, b) => a - b);
     return s.length ? s[Math.floor(s.length / 2)] : 0;
   };
 
+  // fastest_turnaround is an ISO-8601 duration, e.g. "P19DT16H19M25S".
+  const durationDays = (iso) => {
+    const m = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/.exec(iso || "");
+    if (!m) return null;
+    return (+m[1] || 0) + (+m[2] || 0) / 24 + (+m[3] || 0) / 1440;
+  };
+
+  const turnaroundsAll = cores
+    .map((c) => ({ serial: c.serial_number, days: durationDays(c.fastest_turnaround) }))
+    .filter((t) => t.days != null && t.days > 0);
+  const fastest = turnaroundsAll.length
+    ? turnaroundsAll.reduce((a, b) => (b.days < a.days ? b : a))
+    : null;
+
+  // Medians describe the CURRENT fleet. Averaging in cores that were expended
+  // or retired years ago drags the figure down (6 flights vs 17) and answers a
+  // question nobody asked. The all-time record above is still all-time.
+  const activeFlown = active.filter((c) => c.flights > 0);
+  const activeTurnarounds = activeFlown
+    .map((c) => durationDays(c.fastest_turnaround))
+    .filter((d) => d != null && d > 0);
+
   const out = {
     asOf: new Date().toISOString().slice(0, 10),
     recordSerial: leader.serial_number,
     recordFlights: leader.flights,
-    operationalCount: active.length || cores.length,
-    medianFlights: median(flights),
+    operationalCount: active.length,
+    medianFlights: median((activeFlown.length ? activeFlown : withFlights).map((c) => c.flights)),
   };
-  console.log(`[boosters] leader ${out.recordSerial} @ ${out.recordFlights} flights`);
+  if (fastest) {
+    out.fastestSerial = fastest.serial;
+    out.fastestTurnaroundDays = Math.round(fastest.days);
+  }
+  if (activeTurnarounds.length) {
+    out.medianTurnaroundDays = Math.round(median(activeTurnarounds));
+  }
+
+  console.log(
+    `[boosters] ${cores.length} cores, ${active.length} active; ` +
+      `record ${out.recordSerial} @ ${out.recordFlights}` +
+      (fastest ? `; fastest ${fastest.serial} ${out.fastestTurnaroundDays}d` : "")
+  );
   return out;
 }
 
