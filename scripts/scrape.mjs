@@ -76,9 +76,11 @@ export function parseRows(html) {
   return rows;
 }
 
-// Find a row whose first cell matches, return it as numbers.
+// Find a row whose first cell matches. Section headers repeat the same label
+// as their subtotal row but carry only one cell, so require a full-width row
+// or we would silently read `undefined` for every column.
 function findRow(rows, matcher) {
-  return rows.find((r) => matcher(r[0] || ""));
+  return rows.find((r) => matcher(r[0] || "") && r.length > COL_WORKING);
 }
 
 const num = (v) => {
@@ -284,7 +286,7 @@ async function scrapeCadence() {
 async function scrapeBoosters() {
   // Reusable Falcon first stages, most-flown first.
   const url =
-    "https://ll.thespacedevs.com/2.3.0/launcher/" +
+    "https://ll.thespacedevs.com/2.3.0/launchers/" +
     "?search=Falcon&limit=100&ordering=-flights";
   const data = await getJson(url);
   const cores = (data.results || []).filter((c) => c.serial_number?.startsWith("B10"));

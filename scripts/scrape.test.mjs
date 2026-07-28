@@ -6,9 +6,15 @@ import { parseRows, starlinkFromRows } from "./scrape.mjs";
 
 // [label, launched, failedOrbit, earlyDeorbit, disposal, reentryFail,
 //  totalDown, inOrbit, screened, failedDecay, graveyard, TOTALWORKING, ...]
+// NOTE: the real page emits a one-cell section HEADER row with the same label
+// as the subtotal row that follows the shells ("Starlink Gen1", "Starlink
+// Gen2"). The first version of this fixture omitted them, so a bug where the
+// parser grabbed the header instead of the subtotal slipped through. They are
+// included below deliberately — do not remove them.
 const ROWS = [
   ["Starlink Prototype Launch 0 (Tintin)", 2, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0],
   ["Starlink Prototype Launch 1 (V0.9)", 60, 0, 0, 50, 10, 60, 0, 0, 0, 0, 0],
+  ["Starlink Gen1"],
   ["Starlink Group 1 Early Launches 2-8 (V1.0 L1-7)", 420, 0, 9, 226, 49, 284, 136, 0, 3, 0, 133],
   ["Starlink Group 1 Visorsat Launches 9-17 (V1.0 L8-16)", 533, 0, 13, 346, 34, 393, 140, 0, 2, 0, 138],
   ["Starlink Group 1 Visorsat Launches 19+ (V1.0 L17+)", 712, 0, 20, 295, 11, 326, 386, 0, 0, 0, 386],
@@ -18,6 +24,7 @@ const ROWS = [
   ["Starlink Group 4 V1.5 Launches", 1637, 0, 64, 178, 22, 264, 1373, 0, 3, 0, 1370],
   ["Starlink Group 5 V1.5 Launches 43 deg (Gen2)", 699, 0, 5, 43, 3, 51, 648, 0, 1, 0, 647],
   ["Starlink Gen1", 4714, 0, 114, 1222, 133, 1469, 3245, 0, 13, 0, 3232],
+  ["Starlink Gen2"],
   ["Starlink V2 Mini Shell 1, 53 deg (Group 7 to 11)", 989, 0, 18, 34, 3, 55, 934, 0, 1, 0, 933],
   ["Starlink V2 Mini Shell 2, 43 deg (Group 6,12,13)", 1736, 0, 28, 104, 7, 139, 1597, 0, 1, 0, 1596],
   ["Starlink V2 Mini DTC Shell 1, 53 deg", 337, 0, 14, 10, 1, 25, 312, 0, 0, 0, 312],
