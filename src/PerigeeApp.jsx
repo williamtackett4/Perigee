@@ -28,8 +28,12 @@ const LL2_BASE = "https://lldev.thespacedevs.com/2.3.0/launches";
 const SPACEX_LSP_ID = 121;
 
 function isSpaceX(item) {
-  const name = item?.launch_service_provider?.name || "";
-  return /spacex/i.test(name);
+  const provider = item?.launch_service_provider?.name || "";
+  if (provider) return /spacex/i.test(provider);
+  // Some LL2 response modes omit the provider object. Rather than filtering
+  // everything out and falling back to sample data, recognise the hardware.
+  const text = `${item?.name || ""} ${item?.rocket?.configuration?.name || ""}`;
+  return /falcon\s?(9|heavy)|starship|super heavy|dragon/i.test(text);
 }
 
 // Falcon booster instances ("launchers" in LL2). Live source for the booster
@@ -924,7 +928,7 @@ async function fetchLaunchHistory(pages = 7) {
   let cursor = new Date().toISOString();
   for (let page = 0; page < pages; page++) {
     const res = await fetch(
-      `${LL2_BASE}/?lsp__ids=${SPACEX_LSP_ID}&ordering=-net&mode=list&limit=100&net__lt=${encodeURIComponent(cursor)}`,
+      `${LL2_BASE}/?lsp__id=${SPACEX_LSP_ID}&ordering=-net&mode=normal&limit=100&net__lt=${encodeURIComponent(cursor)}`,
       opts
     );
     if (!res.ok) throw new Error("bad status");
@@ -2519,7 +2523,7 @@ function OverviewTab({ upcoming, now, source }) {
         <ProvenanceRow label="Company & site map" kind="snapshot" detail="Curated facts" />
       </div>
       <div className="mono" style={{ fontSize: 10, color: "var(--text-dim)", marginTop: 8, lineHeight: 1.5 }}>
-        Live sources refresh while the app is open (blocked in this preview sandbox, so they show sample). Snapshots are hand-curated with the dates above and would refresh when the data pipeline runs.
+        Live sources refresh each time you open the app and every 12 minutes while it stays open. Snapshots come from the daily data pipeline, with the dates above showing when each was last published.
       </div>
     </div>
   );
@@ -2784,13 +2788,13 @@ export default function PerigeeApp() {
       try {
         const opts = { signal: typeof AbortSignal !== "undefined" && AbortSignal.timeout ? AbortSignal.timeout(10000) : undefined };
         const [upRes, prevRes] = await Promise.all([
-          fetch(`${LL2_BASE}/upcoming/?lsp__ids=${SPACEX_LSP_ID}&mode=list&limit=30`, opts),
-          fetch(`${LL2_BASE}/previous/?lsp__ids=${SPACEX_LSP_ID}&mode=list&limit=40&ordering=-net`, opts),
+          fetch(`${LL2_BASE}/upcoming/?lsp__id=${SPACEX_LSP_ID}&mode=normal&limit=30`, opts),
+          fetch(`${LL2_BASE}/previous/?lsp__id=${SPACEX_LSP_ID}&mode=normal&limit=40&ordering=-net`, opts),
         ]);
         if (!upRes.ok || !prevRes.ok) throw new Error("bad status");
         const [upJson, prevJson] = await Promise.all([upRes.json(), prevRes.json()]);
         // Client-side filter is the reliable guarantee that only SpaceX
-        // launches show, regardless of whether the server honored lsp__ids.
+        // launches show, regardless of whether the server honored lsp__id.
         const up = (upJson.results || []).filter(isSpaceX).map(normalizeLaunch).filter((l) => l.net);
         const pa = (prevJson.results || []).filter(isSpaceX).map(normalizeLaunch).filter((l) => l.net);
         if (!alive) return;
