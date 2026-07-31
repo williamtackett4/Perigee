@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T12:14:46.837Z",
+  "generatedAt": "2026-07-31T13:10:05.148Z",
   "satelliteCensus": {
     "asOf": "2026-07-29",
     "source": "planet4589.org",
@@ -152,13 +152,13 @@
     },
     {
       "year": 2026,
-      "internal": 68,
+      "internal": 69,
       "customer": 21,
       "confidence": "live"
     }
   ],
   "boosterSnapshot": {
-    "asOf": "2026-07-30",
+    "asOf": "2026-07-31",
     "recordSerial": "B1067",
     "recordFlights": 36,
     "operationalCount": 22,
