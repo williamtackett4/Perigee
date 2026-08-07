@@ -228,6 +228,10 @@ const isStarship = (name = "") => /starship|super heavy/i.test(name);
 /**
  * Page backwards through SpaceX launch history using a date cursor.
  * LL2 caps offset paging, so we walk net__lt instead.
+ *
+ * mode=normal (not list) because the compact history we publish needs the
+ * pad and rocket objects for the chart's site and vehicle groupings — and
+ * because `mode=list` silently omits them.
  */
 async function fetchLaunchHistory(pages = 8) {
   const out = [];
@@ -236,7 +240,7 @@ async function fetchLaunchHistory(pages = 8) {
   for (let i = 0; i < pages; i++) {
     const url =
       `${LL2}/?lsp__id=${SPACEX_LSP_ID}&limit=100&ordering=-net` +
-      `&net__lt=${encodeURIComponent(cursor)}&mode=list`;
+      `&net__lt=${encodeURIComponent(cursor)}&mode=normal`;
     const page = await getJson(url);
     const results = page.results || [];
     if (!results.length) break;
@@ -246,12 +250,35 @@ async function fetchLaunchHistory(pages = 8) {
     if (!last?.net) break;
     cursor = last.net;
 
+    // Trust the API's own "more pages" flag rather than assuming a short
+    // page means the end — that assumption truncated history badly.
+    if (!page.next) break;
+
     await sleep(1200); // be polite to a free API
   }
   return out;
 }
 
-async function scrapeCadence() {
+/**
+ * A compact per-launch record for the app's cadence chart. The full API
+ * objects are ~8 kB each; these are ~90 bytes, so ~700 launches ship in
+ * well under 100 kB and the phone never has to page a rate-limited API.
+ */
+function compactHistory(launches) {
+  return launches
+    .filter((l) => l.net)
+    .map((l) => ({
+      id: l.id,
+      net: l.net,
+      name: l.name || "",
+      pad: l.pad?.name || "",
+      loc: l.pad?.location?.name || "",
+      rocket: l.rocket?.configuration?.name || "",
+      status: l.status?.abbrev || "",
+    }));
+}
+
+async function scrapeCadenceAndHistory() {
   const launches = await fetchLaunchHistory();
   if (!launches.length) throw new Error("cadence: no launches returned");
 
@@ -275,12 +302,16 @@ async function scrapeCadence() {
     .sort((a, b) => a.year - b.year)
     .map((r) => ({ ...r, confidence: "live" }));
 
+  const history = compactHistory(launches);
+  const oldest = history.length ? history[history.length - 1].net.slice(0, 10) : "n/a";
   const thisYear = rows[rows.length - 1];
   console.log(
     `[cadence] ${rows.length} years; ${thisYear?.year}: ` +
       `${thisYear?.internal}/${thisYear?.customer}`
   );
-  return rows;
+  console.log(`[history] ${history.length} launches, back to ${oldest}`);
+
+  return { rows, history };
 }
 
 async function scrapeBoosters() {
@@ -371,7 +402,6 @@ async function main() {
   const tasks = [
     ["satelliteCensus", scrapeStarlink],
     ["starshieldCensus", scrapeStarshield],
-    ["yearlyLaunchData", scrapeCadence],
     ["boosterSnapshot", scrapeBoosters],
   ];
 
@@ -382,6 +412,17 @@ async function main() {
       console.error(`[${key}] FAILED: ${err.message}`);
       errors.push(key);
     }
+  }
+
+  // Cadence and launch history come from one paged fetch, so they succeed or
+  // fail together.
+  try {
+    const { rows, history } = await scrapeCadenceAndHistory();
+    payload.yearlyLaunchData = rows;
+    payload.launchHistory = history;
+  } catch (err) {
+    console.error(`[yearlyLaunchData] FAILED: ${err.message}`);
+    errors.push("yearlyLaunchData", "launchHistory");
   }
 
   // Never publish an empty file — that would blank the app's data. If every
