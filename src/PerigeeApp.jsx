@@ -2874,6 +2874,7 @@ export default function PerigeeApp() {
 
   return (
     <div
+      className="pg-stage"
       style={{
         minHeight: 640,
         display: "flex",
@@ -2920,15 +2921,65 @@ export default function PerigeeApp() {
         @keyframes pgSplashFade { to { opacity: 0; visibility: hidden; } }
         @keyframes pgSplashPop { from { opacity: 0; transform: scale(0.82); } to { opacity: 1; transform: scale(1); } }
         @keyframes pgWordFade { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ---- Phone-frame vs real device -----------------------------
+           On a desktop browser the app is drawn inside a mock iPhone so
+           it reads as a prototype. On an actual phone (or once added to
+           the home screen) that framing is wrong: drop the bezel, fill
+           the viewport, and let the tab bar pin to the bottom. */
+        .pg-frame {
+          width: 100%;
+          max-width: 380px;
+          background: #000;
+          border-radius: 44px;
+          padding: 10px;
+          box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+        }
+        .pg-screen {
+          border-radius: 34px;
+          overflow: hidden;
+          position: relative;
+          min-height: 660px;
+          display: flex;
+          flex-direction: column;
+        }
+        @media (max-width: 560px), (display-mode: standalone) {
+          .pg-stage {
+            padding: 0;
+            min-height: 0;
+            align-items: stretch;
+          }
+          .pg-frame {
+            max-width: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            background: var(--ink);
+          }
+          .pg-screen {
+            border-radius: 0;
+            min-height: 0;
+            /* dvh tracks the shrinking URL bar on mobile Safari; the vh
+               line above it is the fallback for older engines. */
+            height: 100vh;
+            height: 100dvh;
+          }
+          /* The real status bar is right there — don't fake a second one. */
+          .pg-chrome { display: none; }
+          /* Clear the notch / dynamic island. */
+          .pg-header { padding-top: calc(10px + env(safe-area-inset-top)); }
+          /* Clear the home indicator. */
+          .pg-tabbar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+        }
       `}</style>
 
-      <div className="perigee-root" style={{ width: "100%", maxWidth: 380, background: "#000", borderRadius: 44, padding: 10, boxShadow: "0 30px 70px rgba(0,0,0,0.55)" }}>
-        <div className="perigee-screen" data-data-version={dataVersion} style={{ borderRadius: 34, overflow: "hidden", position: "relative", minHeight: 660, display: "flex", flexDirection: "column" }}>
-          {/* dynamic island */}
-          <div style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 90, height: 22, background: "#000", borderRadius: 14, zIndex: 5 }} />
+      <div className="perigee-root pg-frame">
+        <div className="perigee-screen pg-screen" data-data-version={dataVersion}>
+          {/* dynamic island — mock only, hidden on real devices */}
+          <div className="pg-chrome" style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 90, height: 22, background: "#000", borderRadius: 14, zIndex: 5 }} />
 
-          {/* status bar */}
-          <div className="mono" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 22px 0", fontSize: 13, fontWeight: 600 }}>
+          {/* status bar — mock clock, hidden on real devices */}
+          <div className="mono pg-chrome" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 22px 0", fontSize: 13, fontWeight: 600 }}>
             <span>{now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}</span>
             <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: source === "live" ? "var(--ok)" : source === "sample" ? "var(--amber)" : "var(--text-dim)" }}>
               <span className={source === "live" ? "pulse" : ""} style={{ width: 6, height: 6, borderRadius: 99, background: source === "live" ? "var(--ok)" : source === "sample" ? "var(--amber)" : "var(--text-dim)", display: "inline-block" }} />
@@ -2937,11 +2988,16 @@ export default function PerigeeApp() {
           </div>
 
           {/* header */}
-          <div style={{ padding: "10px 20px 2px" }}>
+          <div className="pg-header" style={{ padding: "10px 20px 2px", flexShrink: 0 }}>
             <PerigeeWordmark iconSize={22} fontSize={19} />
             <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-0.02em", marginTop: 6 }}>{TITLE_MAP[tab]}</div>
             <div className="mono" style={{ fontSize: 11, color: "var(--text-dim)", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <span>{syncedAt ? `Updated ${syncAgo(syncedAt, now)}${source === "sample" ? " · sample" : ""}` : "Connecting…"}</span>
+              <span style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                {/* On a real phone the mock status bar is hidden, so carry
+                    the live/sample indicator here instead of losing it. */}
+                <span className={source === "live" ? "pulse" : ""} style={{ width: 6, height: 6, borderRadius: 99, flexShrink: 0, background: source === "live" ? "var(--ok)" : source === "sample" ? "var(--amber)" : "var(--text-dim)", display: "inline-block" }} />
+                {syncedAt ? `Updated ${syncAgo(syncedAt, now)}${source === "sample" ? " · sample" : ""}` : "Connecting…"}
+              </span>
               <button
                 onClick={() => setRefreshKey((k) => k + 1)}
                 aria-label="Refresh"
@@ -2952,8 +3008,8 @@ export default function PerigeeApp() {
             </div>
           </div>
 
-          {/* content */}
-          <div className="perigee-scroll" style={{ flex: 1, overflowY: "auto", padding: "8px 20px 12px" }}>
+          {/* content — the only scrolling element, so the tab bar stays put */}
+          <div className="perigee-scroll" style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "8px 20px 12px" }}>
             <div key={tab} className="tab-enter">
               {tab === "overview" && <OverviewTab upcoming={upcoming} now={now} source={source} />}
               {tab === "launches" && <LaunchesHub upcoming={upcoming} past={past} now={now} source={source} onOpenBoosters={() => setBoostersOpen(true)} onSelectLaunch={setSelectedLaunch} alertsOn={alertsOn} onToggleAlerts={toggleAlerts} refreshKey={refreshKey} />}
@@ -2964,7 +3020,7 @@ export default function PerigeeApp() {
           </div>
 
           {/* tab bar */}
-          <div style={{ display: "flex", borderTop: "1px solid var(--hairline)", padding: "10px 8px 18px", background: "rgba(19,23,32,0.92)" }}>
+          <div className="pg-tabbar" style={{ display: "flex", flexShrink: 0, borderTop: "1px solid var(--hairline)", padding: "10px 8px 18px", background: "rgba(19,23,32,0.92)" }}>
             {TABS.map((t) => {
               const Icon = t.icon;
               const active = tab === t.id;
