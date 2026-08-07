@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <title>Perigee</title>
 
+    <!-- The JS/CSS filenames are content-hashed, so a new deploy is picked up
+         as soon as index.html itself is re-fetched. iOS caches this file hard,
+         especially for a home-screen app, which pins the app to whatever
+         bundle it first saw. These force a revalidation each launch. -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <!-- viewport-fit=cover lets the app paint under the notch and home
          indicator; the CSS below re-inserts the safe areas as padding. -->
     <meta
