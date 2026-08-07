@@ -2856,6 +2856,33 @@ function applyLiveData(data) {
 export default function PerigeeApp() {
   const [tab, setTab] = useState("overview");
   const [dataVersion, setDataVersion] = useState(0);
+  // CSS media queries handle this too, but a real class on the element means
+  // the full-bleed layout also survives if a stale cached stylesheet loads,
+  // and lets standalone (home-screen) mode be detected explicitly.
+  const [isPhone, setIsPhone] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return (
+      window.innerWidth <= 560 ||
+      window.matchMedia?.("(display-mode: standalone)")?.matches ||
+      window.navigator?.standalone === true
+    );
+  });
+
+  useEffect(() => {
+    const check = () =>
+      setIsPhone(
+        window.innerWidth <= 560 ||
+          window.matchMedia?.("(display-mode: standalone)")?.matches ||
+          window.navigator?.standalone === true
+      );
+    check();
+    window.addEventListener("resize", check);
+    window.addEventListener("orientationchange", check);
+    return () => {
+      window.removeEventListener("resize", check);
+      window.removeEventListener("orientationchange", check);
+    };
+  }, []);
   const [upcoming, setUpcoming] = useState([]);
   const [past, setPast] = useState([]);
   const [source, setSource] = useState("loading"); // 'loading' | 'live' | 'sample'
@@ -2993,7 +3020,7 @@ export default function PerigeeApp() {
 
   return (
     <div
-      className="pg-stage"
+      className={`pg-stage${isPhone ? " is-phone" : ""}`}
       style={{
         minHeight: 640,
         display: "flex",
@@ -3062,6 +3089,16 @@ export default function PerigeeApp() {
           display: flex;
           flex-direction: column;
         }
+        .pg-stage.is-phone { padding: 0; min-height: 0; align-items: stretch; }
+        .pg-stage.is-phone .pg-frame {
+          max-width: none; border-radius: 0; padding: 0; box-shadow: none; background: var(--ink);
+        }
+        .pg-stage.is-phone .pg-screen {
+          border-radius: 0; min-height: 0; height: 100vh; height: 100dvh;
+        }
+        .pg-stage.is-phone .pg-header { padding-top: calc(14px + env(safe-area-inset-top)); }
+        .pg-stage.is-phone .pg-tabbar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
+
         @media (max-width: 560px), (display-mode: standalone) {
           .pg-stage {
             padding: 0;
@@ -3083,8 +3120,6 @@ export default function PerigeeApp() {
             height: 100vh;
             height: 100dvh;
           }
-          /* The real status bar is right there — don't fake a second one. */
-          .pg-chrome { display: none; }
           /* Clear the notch / dynamic island. */
           .pg-header { padding-top: calc(10px + env(safe-area-inset-top)); }
           /* Clear the home indicator. */
@@ -3094,20 +3129,8 @@ export default function PerigeeApp() {
 
       <div className="perigee-root pg-frame">
         <div className="perigee-screen pg-screen" data-data-version={dataVersion}>
-          {/* dynamic island — mock only, hidden on real devices */}
-          <div className="pg-chrome" style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 90, height: 22, background: "#000", borderRadius: 14, zIndex: 5 }} />
-
-          {/* status bar — mock clock, hidden on real devices */}
-          <div className="mono pg-chrome" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "14px 22px 0", fontSize: 13, fontWeight: 600 }}>
-            <span>{now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}</span>
-            <span style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: source === "live" ? "var(--ok)" : source === "sample" ? "var(--amber)" : "var(--text-dim)" }}>
-              <span className={source === "live" ? "pulse" : ""} style={{ width: 6, height: 6, borderRadius: 99, background: source === "live" ? "var(--ok)" : source === "sample" ? "var(--amber)" : "var(--text-dim)", display: "inline-block" }} />
-              {source === "live" ? "LIVE FEED" : source === "sample" ? "SAMPLE DATA" : "SYNCING"}
-            </span>
-          </div>
-
           {/* header */}
-          <div className="pg-header" style={{ padding: "10px 20px 2px", flexShrink: 0 }}>
+          <div className="pg-header" style={{ padding: "14px 20px 2px", flexShrink: 0 }}>
             <PerigeeWordmark iconSize={22} fontSize={19} />
             <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-0.02em", marginTop: 6 }}>{TITLE_MAP[tab]}</div>
             <div className="mono" style={{ fontSize: 11, color: "var(--text-dim)", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
