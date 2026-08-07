@@ -3137,8 +3137,19 @@ export default function PerigeeApp() {
 
       <div className="perigee-root pg-frame">
         <div className="perigee-screen pg-screen" data-data-version={dataVersion}>
-          {/* header */}
-          <div className="pg-header" style={{ padding: "14px 20px 2px", flexShrink: 0 }}>
+          {/* header — the safe-area inset has to be part of this inline
+              shorthand: a `padding` shorthand here would otherwise beat any
+              `padding-top` rule from CSS, sliding the wordmark under the
+              status bar. */}
+          <div
+            className="pg-header"
+            style={{
+              padding: isPhone
+                ? "calc(14px + env(safe-area-inset-top)) 20px 2px"
+                : "14px 20px 2px",
+              flexShrink: 0,
+            }}
+          >
             <PerigeeWordmark iconSize={22} fontSize={19} />
             <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-0.02em", marginTop: 6 }}>{TITLE_MAP[tab]}</div>
             <div className="mono" style={{ fontSize: 11, color: "var(--text-dim)", marginTop: 4, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -3169,8 +3180,21 @@ export default function PerigeeApp() {
             </div>
           </div>
 
-          {/* tab bar */}
-          <div className="pg-tabbar" style={{ display: "flex", flexShrink: 0, borderTop: "1px solid var(--hairline)", padding: "10px 8px 18px", background: "rgba(19,23,32,0.92)" }}>
+          {/* tab bar — same reasoning as the header: the bottom inset must
+              live in the inline shorthand or the bar sits under the home
+              indicator. */}
+          <div
+            className="pg-tabbar"
+            style={{
+              display: "flex",
+              flexShrink: 0,
+              borderTop: "1px solid var(--hairline)",
+              padding: isPhone
+                ? "10px 8px calc(10px + env(safe-area-inset-bottom))"
+                : "10px 8px 18px",
+              background: "rgba(19,23,32,0.92)",
+            }}
+          >
             {TABS.map((t) => {
               const Icon = t.icon;
               const active = tab === t.id;
