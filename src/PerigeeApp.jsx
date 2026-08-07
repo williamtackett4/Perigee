@@ -919,28 +919,75 @@ function buildMonthsForYearByVehicle(launches, year, upToMonth = 12) {
 /* ---------------------------------------------------------------- */
 /*  Small UI pieces                                                  */
 /* ---------------------------------------------------------------- */
-// Fetches SpaceX launch history by walking backwards with a net__lt date
-// cursor (reliable where offset paging stalls). 7 pages ≈ 700 launches,
-// comfortably more than two years. Returns past launches, newest first.
-async function fetchLaunchHistory(pages = 7) {
-  const opts = { signal: typeof AbortSignal !== "undefined" && AbortSignal.timeout ? AbortSignal.timeout(12000) : undefined };
+
+// The dev API (lldev) is generous with rate limits but only carries a
+// truncated dataset — about 160 SpaceX launches, i.e. back to roughly Aug
+// 2025. Production carries the full ~700 back to 2014. So: use production
+// for the one-off deep history pull, cache it for a day to stay well inside
+// its tighter rate limit, and keep lldev for the small feed that refreshes
+// every few minutes.
+const LL2_DEEP_BASE = "https://ll.thespacedevs.com/2.3.0/launches";
+
+// Deep history published daily by the scraper (public/data/perigee-data.json).
+// Preferred over any client-side paging: it reaches back to 2014 and costs the
+// phone nothing against the API's tight rate limit.
+let PUBLISHED_HISTORY = null;
+const HISTORY_CACHE_KEY = "perigee:history:v1";
+const HISTORY_CACHE_MS = 24 * 60 * 60 * 1000;
+
+function readHistoryCache() {
+  try {
+    const raw = localStorage.getItem(HISTORY_CACHE_KEY);
+    if (!raw) return null;
+    const { at, launches } = JSON.parse(raw);
+    if (!at || !Array.isArray(launches) || !launches.length) return null;
+    if (Date.now() - at > HISTORY_CACHE_MS) return null;
+    return launches;
+  } catch {
+    return null; // private mode, quota, or corrupt entry — just refetch
+  }
+}
+
+function writeHistoryCache(launches) {
+  try {
+    localStorage.setItem(HISTORY_CACHE_KEY, JSON.stringify({ at: Date.now(), launches }));
+  } catch {
+    /* storage full or unavailable; caching is best-effort */
+  }
+}
+
+// Walks backwards with a net__lt date cursor (reliable where offset paging
+// stalls). Returns past launches, newest first.
+async function fetchLaunchHistory(pages = 7, base = LL2_DEEP_BASE) {
   let all = [];
   let cursor = new Date().toISOString();
   for (let page = 0; page < pages; page++) {
+    // A timeout per request, not one shared across the loop: a single
+    // AbortSignal created up front starts counting immediately and would
+    // kill the later pages, silently truncating history.
+    const opts = {
+      signal:
+        typeof AbortSignal !== "undefined" && AbortSignal.timeout
+          ? AbortSignal.timeout(15000)
+          : undefined,
+    };
     const res = await fetch(
-      `${LL2_BASE}/?lsp__id=${SPACEX_LSP_ID}&ordering=-net&mode=normal&limit=100&net__lt=${encodeURIComponent(cursor)}`,
+      `${base}/?lsp__id=${SPACEX_LSP_ID}&ordering=-net&mode=normal&limit=100&net__lt=${encodeURIComponent(cursor)}`,
       opts
     );
     if (!res.ok) throw new Error("bad status");
     const json = await res.json();
     const raw = json.results || [];
     const batch = raw.filter(isSpaceX).map(normalizeLaunch).filter((l) => l.net);
-    if (batch.length === 0) break;
+    if (raw.length === 0) break;
     all = all.concat(batch);
-    const oldest = batch[batch.length - 1].net;
-    if (oldest === cursor) break;
+    const oldest = raw[raw.length - 1].net;
+    if (!oldest || oldest === cursor) break;
     cursor = oldest;
-    if (raw.length < 100) break;
+    // Trust the API's own "is there more" flag. Checking `raw.length < 100`
+    // instead ends the walk on any short page, which is exactly how history
+    // used to stop dead at Aug 2025.
+    if (!json.next) break;
   }
   if (all.length === 0) throw new Error("empty");
   return all;
@@ -1676,7 +1723,7 @@ function BoosterListSheet({ open, onClose }) {
 // buries everything below them.
 const LIST_LIMIT = 10;
 
-function LaunchesTab({ upcoming, past, now, source, onOpenBoosters, onSelectLaunch, alertsOn, onToggleAlerts, refreshKey }) {
+function LaunchesTab({ upcoming, past, now, source, onOpenBoosters, onSelectLaunch, alertsOn, onToggleAlerts, refreshKey, historyVersion }) {
   const [liveHistory, setLiveHistory] = useState(null); // deep history, once loaded
   const [pastExpanded, setPastExpanded] = useState(false);
   const [upcomingExpanded, setUpcomingExpanded] = useState(false);
@@ -1684,19 +1731,57 @@ function LaunchesTab({ upcoming, past, now, source, onOpenBoosters, onSelectLaun
   useEffect(() => {
     let alive = true;
     (async () => {
+      // 1. The daily pipeline's history is the good path: full depth back to
+      //    2014, and zero API calls from the phone.
+      if (PUBLISHED_HISTORY && PUBLISHED_HISTORY.length) {
+        if (alive) setLiveHistory(PUBLISHED_HISTORY);
+        return;
+      }
+
+      // 2. Otherwise reuse a recent client pull if one is cached.
+      const cached = readHistoryCache();
+      if (cached) {
+        if (alive) setLiveHistory(cached);
+        return;
+      }
+
+      // 3. Last resort: page the API from here. Production holds the full
+      //    record but throttles hard (~15 requests/hour), so cache what we
+      //    get; the dev API carries only ~1 year but is far more forgiving.
       try {
-        const all = await fetchLaunchHistory(7);
-        if (alive && all.length) setLiveHistory(all);
-      } catch (e) { /* fall back to the feed below */ }
+        const all = await fetchLaunchHistory(7, LL2_DEEP_BASE);
+        if (!alive) return;
+        if (all.length) {
+          setLiveHistory(all);
+          writeHistoryCache(all);
+        }
+      } catch (e) {
+        try {
+          const fallback = await fetchLaunchHistory(3, LL2_BASE);
+          if (alive && fallback.length) setLiveHistory(fallback);
+        } catch (e2) { /* fall back to the feed below */ }
+      }
     })();
     return () => { alive = false; };
-  }, [refreshKey]);
+  }, [refreshKey, historyVersion]);
 
   // Effective history: prefer the deep live pull; otherwise use whatever the
   // main feed already carries (sample or live "previous"), which updates
   // reactively — so we never freeze an empty array from first render.
+  // Effective history: the deep pull is cached for a day, so merge the fresh
+  // feed over the top — otherwise a launch that flew this morning wouldn't
+  // show until the cache expired. Dedupe by id, newest first.
   const history = useMemo(() => {
-    if (liveHistory && liveHistory.length) return { launches: liveHistory, status: "live" };
+    if (liveHistory && liveHistory.length) {
+      const seen = new Set();
+      const merged = [...past, ...liveHistory].filter((l) => {
+        const k = l.id || `${l.mission}-${l.net}`;
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+      return { launches: merged, status: source === "sample" ? "sample" : "live" };
+    }
     if (past.length) return { launches: past, status: source === "sample" ? "sample" : "live" };
     return { launches: [], status: "loading" };
   }, [liveHistory, past, source]);
@@ -2723,6 +2808,23 @@ function applyLiveData(data) {
       YEARLY_LAUNCH_DATA = v;
     }
   );
+  set(
+    "launchHistory",
+    (v) => Array.isArray(v) && v.length > 0 && v[0].net,
+    (v) => {
+      // Published daily by the scraper. Shaped like the API's normalized
+      // launches so the chart's site/vehicle helpers work unchanged.
+      PUBLISHED_HISTORY = v.map((l) => ({
+        id: l.id,
+        net: l.net,
+        mission: l.name || "",
+        rocket: l.rocket || "",
+        pad: [l.pad, l.loc].filter(Boolean).join(", "),
+        statusLabel: l.status || "",
+        statusKind: statusKindFromAbbrev(l.status || ""),
+      }));
+    }
+  );
 
   // Curated sections. The scraper does not currently produce these, but the
   // hooks are here so a hand-edited JSON can update them without a rebuild.
@@ -3029,7 +3131,7 @@ export default function PerigeeApp() {
           <div className="perigee-scroll" style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "8px 20px 12px" }}>
             <div key={tab} className="tab-enter">
               {tab === "overview" && <OverviewTab upcoming={upcoming} now={now} source={source} />}
-              {tab === "launches" && <LaunchesHub upcoming={upcoming} past={past} now={now} source={source} onOpenBoosters={() => setBoostersOpen(true)} onSelectLaunch={setSelectedLaunch} alertsOn={alertsOn} onToggleAlerts={toggleAlerts} refreshKey={refreshKey} />}
+              {tab === "launches" && <LaunchesHub upcoming={upcoming} past={past} now={now} source={source} onOpenBoosters={() => setBoostersOpen(true)} onSelectLaunch={setSelectedLaunch} alertsOn={alertsOn} onToggleAlerts={toggleAlerts} refreshKey={refreshKey} historyVersion={dataVersion} />}
               {tab === "starlink" && <StarlinkTab past={past} now={now} />}
               {tab === "crew" && <CrewTab crewMissions={crewMissions} now={now} />}
               {tab === "news" && <NewsTab now={now} />}
