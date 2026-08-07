@@ -3022,11 +3022,17 @@ export default function PerigeeApp() {
     <div
       className={`pg-stage${isPhone ? " is-phone" : ""}`}
       style={{
-        minHeight: 640,
+        // These must be set inline-conditionally, not just in the .is-phone
+        // CSS: an inline style always wins over a class rule, so a static
+        // padding here would survive the media query and push the layout
+        // 48px taller than the viewport — clipping the tab bar off the
+        // bottom and leaving a dead band above the header.
+        minHeight: isPhone ? 0 : 640,
+        height: isPhone ? "100%" : undefined,
+        padding: isPhone ? 0 : "24px 12px",
         display: "flex",
         justifyContent: "center",
-        alignItems: "flex-start",
-        padding: "24px 12px",
+        alignItems: isPhone ? "stretch" : "flex-start",
         background: "radial-gradient(ellipse at 50% -10%, rgba(140,150,235,0.16), transparent 60%), var(--ink)",
       }}
     >
@@ -3089,12 +3095,12 @@ export default function PerigeeApp() {
           display: flex;
           flex-direction: column;
         }
-        .pg-stage.is-phone { padding: 0; min-height: 0; align-items: stretch; }
+        .pg-stage.is-phone { padding: 0; min-height: 0; height: 100%; align-items: stretch; }
         .pg-stage.is-phone .pg-frame {
-          max-width: none; border-radius: 0; padding: 0; box-shadow: none; background: var(--ink);
+          max-width: none; border-radius: 0; padding: 0; box-shadow: none; background: var(--ink); height: 100%;
         }
         .pg-stage.is-phone .pg-screen {
-          border-radius: 0; min-height: 0; height: 100vh; height: 100dvh;
+          border-radius: 0; min-height: 0; height: 100%;
         }
         .pg-stage.is-phone .pg-header { padding-top: calc(14px + env(safe-area-inset-top)); }
         .pg-stage.is-phone .pg-tabbar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
@@ -3103,6 +3109,7 @@ export default function PerigeeApp() {
           .pg-stage {
             padding: 0;
             min-height: 0;
+            height: 100%;
             align-items: stretch;
           }
           .pg-frame {
@@ -3111,17 +3118,18 @@ export default function PerigeeApp() {
             padding: 0;
             box-shadow: none;
             background: var(--ink);
+            height: 100%;
           }
           .pg-screen {
             border-radius: 0;
             min-height: 0;
-            /* dvh tracks the shrinking URL bar on mobile Safari; the vh
-               line above it is the fallback for older engines. */
-            height: 100vh;
-            height: 100dvh;
+            /* Percentage of #root, which index.html pins to the visual
+               viewport. Mixing dvh in here let the screen resolve taller
+               than its own parent, hanging the tab bar off the bottom. */
+            height: 100%;
           }
           /* Clear the notch / dynamic island. */
-          .pg-header { padding-top: calc(10px + env(safe-area-inset-top)); }
+          .pg-header { padding-top: calc(14px + env(safe-area-inset-top)); }
           /* Clear the home indicator. */
           .pg-tabbar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
         }
