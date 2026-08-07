@@ -47,21 +47,18 @@
       #root {
         min-height: 100vh;
       }
-      /* On a phone the app owns the whole viewport: the page itself must not
-         scroll, or the pinned tab bar would drift as the body moves. Safe-area
-         insets are applied inside the app (header top, tab bar bottom) rather
-         than as body padding, which would otherwise push the 100dvh layout
-         taller than the screen. */
+      /* On a phone the app owns the whole viewport and sizes itself in dvh,
+         so the page just needs to not scroll. Deliberately no height/position
+         rules here: `position: fixed` plus percentage heights resolves short
+         of the real screen on iOS, leaving a dead band under the tab bar.
+         Safe-area insets are applied inside the app, on the header and tab
+         bar, not as body padding. */
       @media (max-width: 560px), (display-mode: standalone) {
         html,
         body {
-          height: 100%;
           overflow: hidden;
-          position: fixed;
-          width: 100%;
         }
         #root {
-          height: 100%;
           min-height: 0;
         }
       }
