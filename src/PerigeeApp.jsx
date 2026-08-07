@@ -3028,7 +3028,6 @@ export default function PerigeeApp() {
         // 48px taller than the viewport — clipping the tab bar off the
         // bottom and leaving a dead band above the header.
         minHeight: isPhone ? 0 : 640,
-        height: isPhone ? "100%" : undefined,
         padding: isPhone ? 0 : "24px 12px",
         display: "flex",
         justifyContent: "center",
@@ -3095,12 +3094,14 @@ export default function PerigeeApp() {
           display: flex;
           flex-direction: column;
         }
-        .pg-stage.is-phone { padding: 0; min-height: 0; height: 100%; align-items: stretch; }
+        .pg-stage.is-phone { padding: 0; min-height: 0; align-items: stretch; }
         .pg-stage.is-phone .pg-frame {
-          max-width: none; border-radius: 0; padding: 0; box-shadow: none; background: var(--ink); height: 100%;
+          max-width: none; border-radius: 0; padding: 0; box-shadow: none; background: var(--ink);
         }
         .pg-stage.is-phone .pg-screen {
-          border-radius: 0; min-height: 0; height: 100%;
+          border-radius: 0; min-height: 0;
+          height: 100vh;   /* fallback */
+          height: 100dvh;  /* true full screen incl. safe areas */
         }
         .pg-stage.is-phone .pg-header { padding-top: calc(14px + env(safe-area-inset-top)); }
         .pg-stage.is-phone .pg-tabbar { padding-bottom: calc(12px + env(safe-area-inset-bottom)); }
@@ -3109,7 +3110,6 @@ export default function PerigeeApp() {
           .pg-stage {
             padding: 0;
             min-height: 0;
-            height: 100%;
             align-items: stretch;
           }
           .pg-frame {
@@ -3118,15 +3118,16 @@ export default function PerigeeApp() {
             padding: 0;
             box-shadow: none;
             background: var(--ink);
-            height: 100%;
           }
           .pg-screen {
             border-radius: 0;
             min-height: 0;
-            /* Percentage of #root, which index.html pins to the visual
-               viewport. Mixing dvh in here let the screen resolve taller
-               than its own parent, hanging the tab bar off the bottom. */
-            height: 100%;
+            /* The screen alone defines the height, in dvh. A percentage
+               chain (html/body/#root) resolves short of the real screen on
+               iOS when body is position:fixed, which left a dead band under
+               the tab bar. */
+            height: 100vh;
+            height: 100dvh;
           }
           /* Clear the notch / dynamic island. */
           .pg-header { padding-top: calc(14px + env(safe-area-inset-top)); }
