@@ -1671,9 +1671,15 @@ function BoosterListSheet({ open, onClose }) {
   );
 }
 
+// Rows shown before the "show all" toggle, for both the upcoming and past
+// lists. The live feed can return 30+ upcoming and 165+ past launches, which
+// buries everything below them.
+const LIST_LIMIT = 10;
+
 function LaunchesTab({ upcoming, past, now, source, onOpenBoosters, onSelectLaunch, alertsOn, onToggleAlerts, refreshKey }) {
   const [liveHistory, setLiveHistory] = useState(null); // deep history, once loaded
   const [pastExpanded, setPastExpanded] = useState(false);
+  const [upcomingExpanded, setUpcomingExpanded] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -1720,7 +1726,10 @@ function LaunchesTab({ upcoming, past, now, source, onOpenBoosters, onSelectLaun
       .map((l) => settleStatus(l, now));
   }, [stalePast, history.launches, now, twoYearsAgo]);
 
-  const pastVisible = pastExpanded ? pastAll : pastAll.slice(0, 12);
+  // The next launch gets its own card above, so the list starts at index 1.
+  const upcomingRest = upcomingFuture.slice(1);
+  const upcomingVisible = upcomingExpanded ? upcomingRest : upcomingRest.slice(0, LIST_LIMIT);
+  const pastVisible = pastExpanded ? pastAll : pastAll.slice(0, LIST_LIMIT);
 
   return (
     <div>
@@ -1740,11 +1749,19 @@ function LaunchesTab({ upcoming, past, now, source, onOpenBoosters, onSelectLaun
       <SectionLabel>Falcon 9 booster fleet</SectionLabel>
       <BoosterTracker onOpen={onOpenBoosters} refreshKey={refreshKey} />
 
-      <SectionLabel>Upcoming</SectionLabel>
+      <SectionLabel>Upcoming{upcomingRest.length ? ` (${upcomingRest.length})` : ""}</SectionLabel>
       <div className="panel" style={{ padding: "4px 12px" }}>
-        {upcomingFuture.slice(1).map((l) => <LaunchRow key={l.id} l={l} now={now} onSelect={onSelectLaunch} />)}
+        {upcomingVisible.map((l) => <LaunchRow key={l.id} l={l} now={now} onSelect={onSelectLaunch} />)}
         {upcomingFuture.length <= 1 && <div style={{ padding: "12px 4px", color: "var(--text-dim)", fontSize: 13 }}>No further launches in feed.</div>}
       </div>
+      {upcomingRest.length > LIST_LIMIT && (
+        <button
+          onClick={() => setUpcomingExpanded((v) => !v)}
+          style={{ width: "100%", marginTop: 8, padding: "10px 0", borderRadius: 10, border: "1px solid var(--hairline)", background: "transparent", color: "var(--blue)", fontSize: 12, fontWeight: 700, cursor: "pointer" }}
+        >
+          {upcomingExpanded ? "Show less" : `Show all ${upcomingRest.length} upcoming`}
+        </button>
+      )}
 
       <SectionLabel>Past{pastAll.length ? ` · last 2 yr (${pastAll.length})` : ""}</SectionLabel>
       <div className="panel" style={{ padding: "4px 12px" }}>
@@ -1754,7 +1771,7 @@ function LaunchesTab({ upcoming, past, now, source, onOpenBoosters, onSelectLaun
           <div style={{ padding: "12px 4px", color: "var(--text-dim)", fontSize: 13 }}>No past launches in feed.</div>
         )}
       </div>
-      {pastAll.length > 12 && (
+      {pastAll.length > LIST_LIMIT && (
         <button
           onClick={() => setPastExpanded((v) => !v)}
           style={{ width: "100%", marginTop: 8, padding: "10px 0", borderRadius: 10, border: "1px solid var(--hairline)", background: "transparent", color: "var(--blue)", fontSize: 12, fontWeight: 700, cursor: "pointer" }}
