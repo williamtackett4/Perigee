@@ -1162,14 +1162,18 @@ function LaunchDetailSheet({ launch, now, onClose }) {
   ];
   return (
     <div style={{ position: "absolute", inset: 0, background: "var(--ink)", zIndex: 20, display: "flex", flexDirection: "column" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "16px 18px 10px", borderBottom: "1px solid var(--hairline)" }}>
-        <button onClick={onClose} aria-label="Back" style={{ background: "none", border: "none", color: "var(--text-primary)", cursor: "pointer", display: "flex", alignItems: "center", padding: 2 }}>
+      {/* This sheet covers the whole screen, including the status bar area,
+          so it needs its own top inset — otherwise the back button sits
+          under the clock and is hard to tap. env() is 0 where there's no
+          notch, so this is safe on every device. */}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "calc(16px + env(safe-area-inset-top)) 18px 10px", borderBottom: "1px solid var(--hairline)", flexShrink: 0 }}>
+        <button onClick={onClose} aria-label="Back" style={{ background: "none", border: "none", color: "var(--text-primary)", cursor: "pointer", display: "flex", alignItems: "center", padding: 6, margin: -6 }}>
           <ChevronLeft size={22} />
         </button>
         <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: "-0.01em" }}>Launch detail</div>
       </div>
 
-      <div className="perigee-scroll" style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
+      <div className="perigee-scroll" style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "16px 16px calc(16px + env(safe-area-inset-bottom))" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <LaunchGlyph l={launch} size={52} />
           <div style={{ minWidth: 0 }}>
@@ -1657,8 +1661,8 @@ function BoosterListSheet({ open, onClose }) {
 
   return (
     <div style={{ position: "absolute", inset: 0, background: "var(--ink)", zIndex: 20, display: "flex", flexDirection: "column" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "16px 18px 10px", borderBottom: "1px solid var(--hairline)" }}>
-        <button onClick={onClose} aria-label="Back" style={{ background: "none", border: "none", color: "var(--text-primary)", cursor: "pointer", display: "flex", alignItems: "center", padding: 2 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "calc(16px + env(safe-area-inset-top)) 18px 10px", borderBottom: "1px solid var(--hairline)", flexShrink: 0 }}>
+        <button onClick={onClose} aria-label="Back" style={{ background: "none", border: "none", color: "var(--text-primary)", cursor: "pointer", display: "flex", alignItems: "center", padding: 6, margin: -6 }}>
           <ChevronLeft size={22} />
         </button>
         <div>
@@ -1669,7 +1673,7 @@ function BoosterListSheet({ open, onClose }) {
         </div>
       </div>
 
-      <div className="perigee-scroll" style={{ flex: 1, overflowY: "auto", padding: "8px 16px 18px" }}>
+      <div className="perigee-scroll" style={{ flex: 1, minHeight: 0, overflowY: "auto", WebkitOverflowScrolling: "touch", padding: "8px 16px calc(18px + env(safe-area-inset-bottom))" }}>
         {status === "loading" && <RowSkeleton rows={6} />}
         {status === "error" && (
           <div style={{ padding: "20px 6px", color: "var(--text-dim)", fontSize: 13, lineHeight: 1.6 }}>
