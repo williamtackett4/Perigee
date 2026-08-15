@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T09:44:57.699Z",
+  "generatedAt": "2026-08-15T07:46:57.831Z",
   "satelliteCensus": {
     "asOf": "2026-08-12",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-08-14",
+    "asOf": "2026-08-15",
     "recordSerial": "B1067",
     "recordFlights": 36,
     "operationalCount": 22,
@@ -163,11 +163,29 @@
     {
       "year": 2026,
       "internal": 73,
-      "customer": 22,
+      "customer": 24,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "be8b4b0d-1989-48a5-a96d-e8e4d59ed8b3",
+      "net": "2026-08-16T01:12:00Z",
+      "name": "Falcon 9 Block 5 | Globalstar 2-R Mission 1 (x 9)",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
+    {
+      "id": "55b79515-ddbf-4198-8a59-29a12ed21330",
+      "net": "2026-08-15T21:54:02Z",
+      "name": "Falcon 9 Block 5 | USSF-366",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "6f94dbe4-1318-4ffb-a53d-351bbdcba733",
       "net": "2026-08-12T04:46:47Z",
