@@ -1,34 +1,34 @@
 {
-  "generatedAt": "2026-08-21T08:09:07.872Z",
+  "generatedAt": "2026-08-22T07:49:35.111Z",
   "satelliteCensus": {
-    "asOf": "2026-08-20",
+    "asOf": "2026-08-21",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
-    "totalLaunchedEver": 12769,
-    "totalInOrbit": 11003,
-    "totalWorking": 10987,
-    "broadbandWorking": 10348,
+    "totalLaunchedEver": 12798,
+    "totalInOrbit": 11028,
+    "totalWorking": 11012,
+    "broadbandWorking": 10373,
     "dtcWorking": 639,
     "broadbandByVersion": [
       {
         "label": "V1.0",
-        "value": 639,
+        "value": 636,
         "color": "#A7C8FB"
       },
       {
         "label": "V1.5",
-        "value": 2573,
+        "value": 2572,
         "color": "#5E9CF8"
       },
       {
         "label": "V2 Mini",
-        "value": 7136,
+        "value": 7165,
         "color": "#2F66D8"
       }
     ]
   },
   "starshieldCensus": {
-    "asOf": "2026-08-20",
+    "asOf": "2026-08-21",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-08-21",
+    "asOf": "2026-08-22",
     "recordSerial": "B1067",
     "recordFlights": 36,
     "operationalCount": 22,
@@ -170,12 +170,12 @@
   "launchHistory": [
     {
       "id": "6208f972-18ec-490f-bbe5-6f5c6cfcd48c",
-      "net": "2026-08-22T07:25:00Z",
+      "net": "2026-08-22T07:25:16Z",
       "name": "Falcon 9 Block 5 | Starlink Group 15-20",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
-      "status": "Go"
+      "status": "In Flight"
     },
     {
       "id": "bbdc4d47-1de3-428e-9fe1-bbf45d9b1e04",
@@ -184,7 +184,7 @@
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
-      "status": "Go"
+      "status": "Success"
     },
     {
       "id": "f6958a77-37bb-4559-a108-40ba0ff9e34a",
