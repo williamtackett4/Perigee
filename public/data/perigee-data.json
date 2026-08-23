@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-22T07:49:35.111Z",
+  "generatedAt": "2026-08-23T07:52:05.657Z",
   "satelliteCensus": {
     "asOf": "2026-08-21",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-08-22",
+    "asOf": "2026-08-23",
     "recordSerial": "B1067",
     "recordFlights": 36,
     "operationalCount": 22,
@@ -175,7 +175,7 @@
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
-      "status": "In Flight"
+      "status": "Success"
     },
     {
       "id": "bbdc4d47-1de3-428e-9fe1-bbf45d9b1e04",
