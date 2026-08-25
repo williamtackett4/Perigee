@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-24T08:31:27.509Z",
+  "generatedAt": "2026-08-25T08:23:40.907Z",
   "satelliteCensus": {
     "asOf": "2026-08-21",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-08-24",
+    "asOf": "2026-08-25",
     "recordSerial": "B1067",
     "recordFlights": 36,
     "operationalCount": 22,
@@ -170,7 +170,7 @@
   "launchHistory": [
     {
       "id": "ad501ebd-a357-4305-90c1-c46c6feb2ecf",
-      "net": "2026-08-25T05:49:00Z",
+      "net": "2026-08-25T09:33:38Z",
       "name": "Falcon 9 Block 5 | Starlink Group 10-49",
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
