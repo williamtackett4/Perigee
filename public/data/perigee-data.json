@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-08-26T08:24:17.256Z",
+  "generatedAt": "2026-08-27T17:39:49.913Z",
   "satelliteCensus": {
-    "asOf": "2026-08-26",
+    "asOf": "2026-08-27",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
-    "totalLaunchedEver": 12854,
-    "totalInOrbit": 11076,
-    "totalWorking": 11061,
-    "broadbandWorking": 10422,
+    "totalLaunchedEver": 12881,
+    "totalInOrbit": 11102,
+    "totalWorking": 11087,
+    "broadbandWorking": 10448,
     "dtcWorking": 639,
     "broadbandByVersion": [
       {
@@ -17,18 +17,18 @@
       },
       {
         "label": "V1.5",
-        "value": 2571,
+        "value": 2570,
         "color": "#5E9CF8"
       },
       {
         "label": "V2 Mini",
-        "value": 7221,
+        "value": 7248,
         "color": "#2F66D8"
       }
     ]
   },
   "starshieldCensus": {
-    "asOf": "2026-08-26",
+    "asOf": "2026-08-27",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-08-26",
+    "asOf": "2026-08-27",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -175,7 +175,7 @@
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
-      "status": "Go"
+      "status": "Success"
     },
     {
       "id": "ad501ebd-a357-4305-90c1-c46c6feb2ecf",
