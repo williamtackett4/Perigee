@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T18:45:48.116Z",
+  "generatedAt": "2026-08-29T12:42:46.892Z",
   "satelliteCensus": {
     "asOf": "2026-08-27",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-08-28",
+    "asOf": "2026-08-29",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -163,11 +163,20 @@
     {
       "year": 2026,
       "internal": 78,
-      "customer": 24,
+      "customer": 25,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "521f3a1c-f977-4306-9b7f-495858719adf",
+      "net": "2026-08-30T11:25:49Z",
+      "name": "Falcon Heavy | Nancy Grace Roman Space Telescope",
+      "pad": "Launch Complex 39A",
+      "loc": "Kennedy Space Center, FL, USA",
+      "rocket": "Falcon Heavy",
+      "status": "Go"
+    },
     {
       "id": "95653d52-bb77-4860-a815-dd7141778d17",
       "net": "2026-08-26T09:35:11Z",
