@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T11:57:35.471Z",
+  "generatedAt": "2026-08-31T13:56:56.517Z",
   "satelliteCensus": {
     "asOf": "2026-08-27",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-08-30",
+    "asOf": "2026-08-31",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -175,7 +175,7 @@
       "pad": "Launch Complex 39A",
       "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon Heavy",
-      "status": "In Flight"
+      "status": "Success"
     },
     {
       "id": "95653d52-bb77-4860-a815-dd7141778d17",
