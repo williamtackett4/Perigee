@@ -1,34 +1,34 @@
 {
-  "generatedAt": "2026-09-09T11:28:00.395Z",
+  "generatedAt": "2026-09-10T11:24:17.702Z",
   "satelliteCensus": {
-    "asOf": "2026-09-07",
+    "asOf": "2026-09-10",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
     "totalLaunchedEver": 12935,
-    "totalInOrbit": 11139,
-    "totalWorking": 11124,
-    "broadbandWorking": 10485,
+    "totalInOrbit": 11133,
+    "totalWorking": 11118,
+    "broadbandWorking": 10479,
     "dtcWorking": 639,
     "broadbandByVersion": [
       {
         "label": "V1.0",
-        "value": 616,
+        "value": 612,
         "color": "#A7C8FB"
       },
       {
         "label": "V1.5",
-        "value": 2567,
+        "value": 2566,
         "color": "#5E9CF8"
       },
       {
         "label": "V2 Mini",
-        "value": 7302,
+        "value": 7301,
         "color": "#2F66D8"
       }
     ]
   },
   "starshieldCensus": {
-    "asOf": "2026-09-07",
+    "asOf": "2026-09-10",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-09-09",
+    "asOf": "2026-09-10",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -163,11 +163,20 @@
     {
       "year": 2026,
       "internal": 80,
-      "customer": 25,
+      "customer": 26,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "3e0456da-14b1-4ac3-b59e-35fefb1d1530",
+      "net": "2026-09-10T15:42:00Z",
+      "name": "Falcon 9 Block 5 | USSF-153",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "153ef8ef-b12b-43f4-a4bf-05b225c0cd37",
       "net": "2026-09-06T14:26:54Z",
