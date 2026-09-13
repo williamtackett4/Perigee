@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T10:51:22.559Z",
+  "generatedAt": "2026-09-13T11:56:41.390Z",
   "satelliteCensus": {
     "asOf": "2026-09-10",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-09-12",
+    "asOf": "2026-09-13",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -163,11 +163,20 @@
     {
       "year": 2026,
       "internal": 80,
-      "customer": 26,
+      "customer": 27,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "ad358a4d-c541-409b-9366-9c2f2da4aeb9",
+      "net": "2026-09-13T18:49:00Z",
+      "name": "Falcon 9 Block 5 | O3b mPower 11-13",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "3e0456da-14b1-4ac3-b59e-35fefb1d1530",
       "net": "2026-09-10T15:42:30Z",
