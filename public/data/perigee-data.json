@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T11:40:52.934Z",
+  "generatedAt": "2026-09-17T11:46:20.158Z",
   "satelliteCensus": {
     "asOf": "2026-09-16",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-09-16",
+    "asOf": "2026-09-17",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -170,12 +170,12 @@
   "launchHistory": [
     {
       "id": "17c71937-dd80-406f-bb47-0c9ee9a24276",
-      "net": "2026-09-17T01:00:00Z",
+      "net": "2026-09-17T01:07:56Z",
       "name": "Falcon 9 Block 5 | USSF-259",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
-      "status": "Go"
+      "status": "Success"
     },
     {
       "id": "ad358a4d-c541-409b-9366-9c2f2da4aeb9",
