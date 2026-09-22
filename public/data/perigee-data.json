@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T12:53:43.125Z",
+  "generatedAt": "2026-09-22T11:43:39.190Z",
   "satelliteCensus": {
     "asOf": "2026-09-21",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-09-21",
+    "asOf": "2026-09-22",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
