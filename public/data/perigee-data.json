@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-28T14:01:29.016Z",
+  "generatedAt": "2026-09-29T12:57:44.515Z",
   "satelliteCensus": {
-    "asOf": "2026-09-24",
+    "asOf": "2026-09-28",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
     "totalLaunchedEver": 12962,
-    "totalInOrbit": 11135,
-    "totalWorking": 11121,
-    "broadbandWorking": 10482,
-    "dtcWorking": 639,
+    "totalInOrbit": 11133,
+    "totalWorking": 11119,
+    "broadbandWorking": 10481,
+    "dtcWorking": 638,
     "broadbandByVersion": [
       {
         "label": "V1.0",
@@ -17,7 +17,7 @@
       },
       {
         "label": "V1.5",
-        "value": 2563,
+        "value": 2562,
         "color": "#5E9CF8"
       },
       {
@@ -28,7 +28,7 @@
     ]
   },
   "starshieldCensus": {
-    "asOf": "2026-09-24",
+    "asOf": "2026-09-28",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-09-28",
+    "asOf": "2026-09-29",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -175,7 +175,7 @@
       "pad": "Orbital Launch Pad 2",
       "loc": "SpaceX Starbase, TX, USA",
       "rocket": "Starship",
-      "status": "In Flight"
+      "status": "Success"
     },
     {
       "id": "7330d83b-c478-426c-8859-f9e3a335876d",
