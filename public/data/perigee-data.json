@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T12:39:51.552Z",
+  "generatedAt": "2026-10-01T13:23:02.596Z",
   "satelliteCensus": {
     "asOf": "2026-09-28",
     "source": "planet4589.org",
@@ -36,7 +36,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-09-30",
+    "asOf": "2026-10-01",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -163,11 +163,38 @@
     {
       "year": 2026,
       "internal": 81,
-      "customer": 29,
+      "customer": 32,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "4651fd8a-43de-4166-bf8f-c168b3bd1d2c",
+      "net": "2026-10-02T03:53:00Z",
+      "name": "Falcon Heavy | NROL-97",
+      "pad": "Launch Complex 39A",
+      "loc": "Kennedy Space Center, FL, USA",
+      "rocket": "Falcon Heavy",
+      "status": "Go"
+    },
+    {
+      "id": "67213393-7983-4c06-8b44-b8c785a5ed79",
+      "net": "2026-10-01T18:18:00Z",
+      "name": "Falcon 9 Block 5 | Transporter 18 (Dedicated SSO Rideshare)",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
+    {
+      "id": "18441371-8b2e-457c-afb5-1ec1b11ab630",
+      "net": "2026-10-01T15:10:06Z",
+      "name": "Falcon 9 Block 5 | Crew-13",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "7d1afb26-6f9c-429b-9ccf-29012fd1e519",
       "net": "2026-09-28T12:48:59Z",
