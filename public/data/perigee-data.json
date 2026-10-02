@@ -1,34 +1,17 @@
 {
-  "generatedAt": "2026-10-01T13:23:02.596Z",
+  "generatedAt": "2026-10-02T12:41:25.531Z",
   "satelliteCensus": {
-    "asOf": "2026-09-28",
+    "asOf": "2026-10-02",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
-    "totalLaunchedEver": 12962,
-    "totalInOrbit": 11133,
-    "totalWorking": 11119,
-    "broadbandWorking": 10481,
-    "dtcWorking": 638,
-    "broadbandByVersion": [
-      {
-        "label": "V1.0",
-        "value": 595,
-        "color": "#A7C8FB"
-      },
-      {
-        "label": "V1.5",
-        "value": 2562,
-        "color": "#5E9CF8"
-      },
-      {
-        "label": "V2 Mini",
-        "value": 7324,
-        "color": "#2F66D8"
-      }
-    ]
+    "totalLaunchedEver": 12988,
+    "totalInOrbit": 11156,
+    "totalWorking": 11142,
+    "broadbandWorking": 10504,
+    "dtcWorking": 638
   },
   "starshieldCensus": {
-    "asOf": "2026-09-28",
+    "asOf": "2026-10-02",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -36,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-10-01",
+    "asOf": "2026-10-02",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -170,21 +153,21 @@
   "launchHistory": [
     {
       "id": "4651fd8a-43de-4166-bf8f-c168b3bd1d2c",
-      "net": "2026-10-02T03:53:00Z",
+      "net": "2026-10-02T03:54:00Z",
       "name": "Falcon Heavy | NROL-97",
       "pad": "Launch Complex 39A",
       "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon Heavy",
-      "status": "Go"
+      "status": "Success"
     },
     {
       "id": "67213393-7983-4c06-8b44-b8c785a5ed79",
-      "net": "2026-10-01T18:18:00Z",
+      "net": "2026-10-01T18:32:00Z",
       "name": "Falcon 9 Block 5 | Transporter 18 (Dedicated SSO Rideshare)",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
-      "status": "Go"
+      "status": "Success"
     },
     {
       "id": "18441371-8b2e-457c-afb5-1ec1b11ab630",
@@ -193,7 +176,7 @@
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
-      "status": "Go"
+      "status": "Success"
     },
     {
       "id": "7d1afb26-6f9c-429b-9ccf-29012fd1e519",
