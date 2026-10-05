@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-04T12:26:01.730Z",
+  "generatedAt": "2026-10-05T14:47:01.348Z",
   "satelliteCensus": {
     "asOf": "2026-10-02",
     "source": "planet4589.org",
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-10-04",
+    "asOf": "2026-10-05",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -153,7 +153,7 @@
   "launchHistory": [
     {
       "id": "da43dc2c-00af-4cc1-8ef1-90a60b2eb9e5",
-      "net": "2026-10-05T08:17:00Z",
+      "net": "2026-10-06T08:17:00Z",
       "name": "Falcon 9 Block 5 | SDA Tranche 1 Transport Layer A",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
