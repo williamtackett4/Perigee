@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T13:24:05.496Z",
+  "generatedAt": "2026-10-20T11:43:34.988Z",
   "satelliteCensus": {
     "asOf": "2026-10-15",
     "source": "planet4589.org",
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-10-19",
+    "asOf": "2026-10-20",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -139,26 +139,35 @@
     },
     {
       "year": 2025,
-      "internal": 122,
+      "internal": 123,
       "customer": 43,
       "confidence": "live"
     },
     {
       "year": 2026,
-      "internal": 83,
+      "internal": 84,
       "customer": 36,
       "confidence": "live"
     }
   ],
   "launchHistory": [
     {
+      "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
+      "net": "2026-10-20T23:10:02Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 15-15",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
+    {
       "id": "3b430f81-0ff1-4d85-8a1a-cef0de326198",
-      "net": "2026-10-19T10:30:00Z",
+      "net": "2026-10-20T11:04:00Z",
       "name": "Falcon 9 Block 5 | Bandwagon 5 (Dedicated Mid-Inclination Rideshare)",
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
-      "status": "Go"
+      "status": "In Flight"
     },
     {
       "id": "df88cfbf-f504-4e11-8370-e33dd6280b5b",
@@ -1043,9 +1052,9 @@
       "status": "Success"
     },
     {
-      "id": "49532577-7d26-49df-ada3-12a85bb8189e",
-      "net": "2026-02-22T03:47:10Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 6-104",
+      "id": "db5c6392-a8b5-4f97-8a38-cc147f086f00",
+      "net": "2026-02-24T23:04:10Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 6-110",
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
@@ -1930,6 +1939,15 @@
       "name": "Falcon 9 Block 5 | Starlink Group 17-2",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Success"
+    },
+    {
+      "id": "d4eba3cb-9474-41f9-9618-a90d1c0b7025",
+      "net": "2025-07-26T09:01:40Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 10-26",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -5534,20 +5552,20 @@
       "status": "Success"
     },
     {
+      "id": "621d64e6-0513-45dc-8ffa-c9fd56518398",
+      "net": "2021-09-16T00:02:56Z",
+      "name": "Falcon 9 Block 5 | Inspiration4",
+      "pad": "Launch Complex 39A",
+      "loc": "Kennedy Space Center, FL, USA",
+      "rocket": "Falcon 9",
+      "status": "Success"
+    },
+    {
       "id": "6b9f9fe6-7f94-498b-a664-7c9e42dbe76d",
       "net": "2021-09-14T03:55:50Z",
       "name": "Falcon 9 Block 5 | Starlink Group 2-1",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
-      "rocket": "Falcon 9",
-      "status": "Success"
-    },
-    {
-      "id": "13386512-85bb-4c93-a9b0-f5eac05fbe4f",
-      "net": "2021-08-29T07:14:49Z",
-      "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-23",
-      "pad": "Launch Complex 39A",
-      "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -6434,20 +6452,20 @@
       "status": "Success"
     },
     {
-      "id": "fe77ab35-1131-42ef-b9e4-1d876471e86d",
-      "net": "2017-07-05T23:38:00Z",
-      "name": "Falcon 9 Full Thrust | Intelsat 35e",
+      "id": "8802f398-44b6-4b3c-a2e1-af73cbe9d44e",
+      "net": "2017-08-14T16:31:37Z",
+      "name": "Falcon 9 Block 4 | SpX CRS-12",
       "pad": "Launch Complex 39A",
       "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
     {
-      "id": "eb953c99-1267-4892-85b2-51a4f22cbb08",
-      "net": "2017-06-25T20:25:18Z",
-      "name": "Falcon 9 Full Thrust | Iridium-2",
-      "pad": "Space Launch Complex 4E",
-      "loc": "Vandenberg SFB, CA, USA",
+      "id": "fe77ab35-1131-42ef-b9e4-1d876471e86d",
+      "net": "2017-07-05T23:38:00Z",
+      "name": "Falcon 9 Full Thrust | Intelsat 35e",
+      "pad": "Launch Complex 39A",
+      "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -6838,9 +6856,5 @@
       "rocket": "Falcon 1",
       "status": "Failure"
     }
-  ],
-  "partial": [
-    "yearlyLaunchData",
-    "launchHistory"
   ]
 }
