@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T11:55:26.906Z",
+  "generatedAt": "2026-10-22T11:58:05.524Z",
   "satelliteCensus": {
     "asOf": "2026-10-15",
     "source": "planet4589.org",
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-10-21",
+    "asOf": "2026-10-22",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -153,7 +153,7 @@
   "launchHistory": [
     {
       "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
-      "net": "2026-10-21T23:02:41Z",
+      "net": "2026-10-22T22:40:24Z",
       "name": "Falcon 9 Block 5 | Starlink Group 15-15",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
