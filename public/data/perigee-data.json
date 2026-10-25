@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-24T11:07:02.966Z",
+  "generatedAt": "2026-10-25T11:37:19.221Z",
   "satelliteCensus": {
     "asOf": "2026-10-24",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
-    "totalLaunchedEver": 13015,
-    "totalInOrbit": 11144,
-    "totalWorking": 11129,
-    "broadbandWorking": 10492,
+    "totalLaunchedEver": 13042,
+    "totalInOrbit": 11170,
+    "totalWorking": 11155,
+    "broadbandWorking": 10518,
     "dtcWorking": 637
   },
   "starshieldCensus": {
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-10-24",
+    "asOf": "2026-10-25",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
