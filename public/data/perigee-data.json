@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-10-25T11:37:19.221Z",
+  "generatedAt": "2026-10-26T13:09:44.323Z",
   "satelliteCensus": {
-    "asOf": "2026-10-24",
+    "asOf": "2026-10-26",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
     "totalLaunchedEver": 13042,
-    "totalInOrbit": 11170,
-    "totalWorking": 11155,
-    "broadbandWorking": 10518,
+    "totalInOrbit": 11166,
+    "totalWorking": 11151,
+    "broadbandWorking": 10514,
     "dtcWorking": 637
   },
   "starshieldCensus": {
-    "asOf": "2026-10-24",
+    "asOf": "2026-10-26",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-10-25",
+    "asOf": "2026-10-26",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -127,14 +127,14 @@
     },
     {
       "year": 2023,
-      "internal": 63,
+      "internal": 64,
       "customer": 33,
       "confidence": "live"
     },
     {
       "year": 2024,
       "internal": 89,
-      "customer": 45,
+      "customer": 46,
       "confidence": "live"
     },
     {
@@ -145,12 +145,21 @@
     },
     {
       "year": 2026,
-      "internal": 84,
+      "internal": 85,
       "customer": 36,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "e2886a96-5ce9-4f45-872f-4e25a00be837",
+      "net": "2026-10-27T04:45:00Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 15-16",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "f6af629d-39b5-4f86-bc0c-f8776444a858",
       "net": "2026-10-23T22:48:44Z",
@@ -1043,11 +1052,11 @@
       "status": "Success"
     },
     {
-      "id": "db5c6392-a8b5-4f97-8a38-cc147f086f00",
-      "net": "2026-02-24T23:04:10Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 6-110",
-      "pad": "Space Launch Complex 40",
-      "loc": "Cape Canaveral SFS, FL, USA",
+      "id": "742daf86-0810-4df5-8a7d-1ff72a14e261",
+      "net": "2026-02-25T14:17:49Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 17-26",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -1943,11 +1952,11 @@
       "status": "Success"
     },
     {
-      "id": "d4eba3cb-9474-41f9-9618-a90d1c0b7025",
-      "net": "2025-07-26T09:01:40Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 10-26",
-      "pad": "Space Launch Complex 40",
-      "loc": "Cape Canaveral SFS, FL, USA",
+      "id": "a483028f-2dda-447b-bacd-bcb534903074",
+      "net": "2025-07-27T04:31:09Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 17-2",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -2830,6 +2839,15 @@
       "name": "Falcon 9 Block 5 | Starlink Group 12-2",
       "pad": "Launch Complex 39A",
       "loc": "Kennedy Space Center, FL, USA",
+      "rocket": "Falcon 9",
+      "status": "Success"
+    },
+    {
+      "id": "50a1337c-db6f-4bf4-b7b0-919c9fca906e",
+      "net": "2024-12-21T11:34:24Z",
+      "name": "Falcon 9 Block 5 | Bandwagon 2 (Dedicated Mid-Inclination Rideshare)",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -4634,6 +4652,15 @@
       "status": "Success"
     },
     {
+      "id": "0962fe02-4a3d-4131-8bc5-ee7bd2bc97fa",
+      "net": "2023-05-19T06:19:30Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 6-3",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
+      "rocket": "Falcon 9",
+      "status": "Success"
+    },
+    {
       "id": "f5a3eb4c-9eb5-4e28-acfb-7903a9e11371",
       "net": "2023-05-14T05:03:50Z",
       "name": "Falcon 9 Block 5 | Starlink Group 5-9",
@@ -5525,6 +5552,15 @@
       "status": "Success"
     },
     {
+      "id": "c4b2f90e-3385-4cbe-a89f-fc5f57da1bfb",
+      "net": "2021-11-24T06:21:02Z",
+      "name": "Falcon 9 Block 5 | Double Asteroid Redirection Test (DART)",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Success"
+    },
+    {
       "id": "e4200e5c-2726-43f2-8439-36bd1be59821",
       "net": "2021-11-13T12:18:56Z",
       "name": "Falcon 9 Block 5 | Starlink Group 4-1",
@@ -5537,15 +5573,6 @@
       "id": "0d779392-1a36-4c1e-b0b8-ec11e3031ee6",
       "net": "2021-11-11T02:03:31Z",
       "name": "Falcon 9 Block 5 | Crew-3",
-      "pad": "Launch Complex 39A",
-      "loc": "Kennedy Space Center, FL, USA",
-      "rocket": "Falcon 9",
-      "status": "Success"
-    },
-    {
-      "id": "621d64e6-0513-45dc-8ffa-c9fd56518398",
-      "net": "2021-09-16T00:02:56Z",
-      "name": "Falcon 9 Block 5 | Inspiration4",
       "pad": "Launch Complex 39A",
       "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon 9",
@@ -6425,6 +6452,15 @@
       "status": "Success"
     },
     {
+      "id": "b8800f25-3b09-48de-895d-ec2fb7981c0f",
+      "net": "2017-10-09T12:37:01Z",
+      "name": "Falcon 9 Block 4 | Iridium-3",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Success"
+    },
+    {
       "id": "82995933-e6fd-4de8-8785-5d98c9feddbe",
       "net": "2017-09-07T14:00:00Z",
       "name": "Falcon 9 Block 4 | OTV-5 (X-37B)",
@@ -6439,15 +6475,6 @@
       "name": "Falcon 9 Full Thrust | Formosat 5",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
-      "rocket": "Falcon 9",
-      "status": "Success"
-    },
-    {
-      "id": "8802f398-44b6-4b3c-a2e1-af73cbe9d44e",
-      "net": "2017-08-14T16:31:37Z",
-      "name": "Falcon 9 Block 4 | SpX CRS-12",
-      "pad": "Launch Complex 39A",
-      "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
