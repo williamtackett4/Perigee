@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T16:02:07.518Z",
+  "generatedAt": "2026-11-03T14:21:34.427Z",
   "satelliteCensus": {
     "asOf": "2026-11-02",
     "source": "planet4589.org",
@@ -6883,5 +6883,10 @@
       "rocket": "Falcon 1",
       "status": "Failure"
     }
+  ],
+  "partial": [
+    "boosterSnapshot",
+    "yearlyLaunchData",
+    "launchHistory"
   ]
 }
