@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T14:21:34.427Z",
+  "generatedAt": "2026-11-04T14:37:35.087Z",
   "satelliteCensus": {
     "asOf": "2026-11-02",
     "source": "planet4589.org",
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-11-02",
+    "asOf": "2026-11-04",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -6883,10 +6883,5 @@
       "rocket": "Falcon 1",
       "status": "Failure"
     }
-  ],
-  "partial": [
-    "boosterSnapshot",
-    "yearlyLaunchData",
-    "launchHistory"
   ]
 }
