@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-11-08T13:29:53.393Z",
+  "generatedAt": "2026-11-09T16:28:07.550Z",
   "satelliteCensus": {
-    "asOf": "2026-11-07",
+    "asOf": "2026-11-09",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
     "totalLaunchedEver": 13096,
-    "totalInOrbit": 11207,
-    "totalWorking": 11193,
-    "broadbandWorking": 10556,
+    "totalInOrbit": 11204,
+    "totalWorking": 11190,
+    "broadbandWorking": 10553,
     "dtcWorking": 637
   },
   "starshieldCensus": {
-    "asOf": "2026-11-07",
+    "asOf": "2026-11-09",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-11-08",
+    "asOf": "2026-11-09",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -133,24 +133,33 @@
     },
     {
       "year": 2024,
-      "internal": 90,
+      "internal": 89,
       "customer": 45,
       "confidence": "live"
     },
     {
       "year": 2025,
-      "internal": 123,
-      "customer": 43,
+      "internal": 122,
+      "customer": 44,
       "confidence": "live"
     },
     {
       "year": 2026,
       "internal": 86,
-      "customer": 37,
+      "customer": 38,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "6aa7b90b-e5ed-45d8-a52e-04fbf399d178",
+      "net": "2026-11-10T03:07:15Z",
+      "name": "Falcon 9 Block 5 | USSF-627",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "54d471e8-695c-4fa7-a3cf-dbd8b389e8ae",
       "net": "2026-11-07T00:48:42Z",
@@ -1043,11 +1052,11 @@
       "status": "Success"
     },
     {
-      "id": "887eb3dc-ead1-4fef-87a1-b490e780f43a",
-      "net": "2026-03-01T10:10:39Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 17-23",
-      "pad": "Space Launch Complex 4E",
-      "loc": "Vandenberg SFB, CA, USA",
+      "id": "3f71a8a7-118f-460c-953b-984de24aba5c",
+      "net": "2026-03-02T02:56:40Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 10-41",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -1943,11 +1952,11 @@
       "status": "Success"
     },
     {
-      "id": "77260245-22c9-4a05-8df6-af7441206c83",
-      "net": "2025-07-31T18:35:09Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 13-4",
-      "pad": "Space Launch Complex 4E",
-      "loc": "Vandenberg SFB, CA, USA",
+      "id": "88b4b179-c4ed-4bd1-868d-ced568a2342a",
+      "net": "2025-08-01T15:43:42Z",
+      "name": "Falcon 9 Block 5 | Crew-11",
+      "pad": "Launch Complex 39A",
+      "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -2839,15 +2848,6 @@
       "name": "Falcon 9 Block 5 | Astranis: From One to Many (4x Astranis MicroGEO)",
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
-      "rocket": "Falcon 9",
-      "status": "Success"
-    },
-    {
-      "id": "eea43b3f-eddc-437a-ada5-8e23286f1eef",
-      "net": "2024-12-29T01:58:30Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 11-3",
-      "pad": "Space Launch Complex 4E",
-      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
