@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-11-12T15:20:06.919Z",
+  "generatedAt": "2026-11-13T14:38:46.854Z",
   "satelliteCensus": {
-    "asOf": "2026-11-09",
+    "asOf": "2026-11-13",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
     "totalLaunchedEver": 13096,
-    "totalInOrbit": 11204,
-    "totalWorking": 11190,
-    "broadbandWorking": 10553,
+    "totalInOrbit": 11193,
+    "totalWorking": 11179,
+    "broadbandWorking": 10542,
     "dtcWorking": 637
   },
   "starshieldCensus": {
-    "asOf": "2026-11-09",
+    "asOf": "2026-11-13",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 245,
@@ -6883,5 +6883,10 @@
       "rocket": "Falcon 1",
       "status": "Failure"
     }
+  ],
+  "partial": [
+    "boosterSnapshot",
+    "yearlyLaunchData",
+    "launchHistory"
   ]
 }
