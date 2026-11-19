@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T15:43:35.934Z",
+  "generatedAt": "2026-11-19T15:48:33.083Z",
   "satelliteCensus": {
     "asOf": "2026-11-18",
     "source": "planet4589.org",
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-11-18",
+    "asOf": "2026-11-19",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -139,18 +139,27 @@
     },
     {
       "year": 2025,
-      "internal": 123,
+      "internal": 122,
       "customer": 43,
       "confidence": "live"
     },
     {
       "year": 2026,
       "internal": 86,
-      "customer": 38,
+      "customer": 39,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
+      "net": "2026-11-20T04:32:55Z",
+      "name": "Falcon 9 Block 5 | USSF-317",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "0f867f0c-5422-4d44-93b8-d7faaae7019b",
       "net": "2026-11-13T22:47:36Z",
@@ -1043,11 +1052,11 @@
       "status": "Success"
     },
     {
-      "id": "5d5e17f4-292b-45f6-ab53-05437cf63ce0",
-      "net": "2026-03-04T10:52:20Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 10-40",
-      "pad": "Space Launch Complex 40",
-      "loc": "Cape Canaveral SFS, FL, USA",
+      "id": "12e62caf-f4aa-4f28-a3bd-f9c8a44b707d",
+      "net": "2026-03-08T11:00:19Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 17-18",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -1937,15 +1946,6 @@
       "id": "594ae0c5-2039-4a1a-a6be-7b0940b2ed2c",
       "net": "2025-08-11T12:35:00Z",
       "name": "Falcon 9 Block 5 | Amazon Leo (KF-02)",
-      "pad": "Space Launch Complex 40",
-      "loc": "Cape Canaveral SFS, FL, USA",
-      "rocket": "Falcon 9",
-      "status": "Success"
-    },
-    {
-      "id": "ebaf6c77-6f86-4d54-bf4e-137d0dc2c235",
-      "net": "2025-08-04T07:57:50Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 10-30",
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
