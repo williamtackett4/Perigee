@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T15:48:33.083Z",
+  "generatedAt": "2026-11-20T15:31:02.379Z",
   "satelliteCensus": {
     "asOf": "2026-11-18",
     "source": "planet4589.org",
@@ -19,7 +19,7 @@
     "totalWorking": 241
   },
   "boosterSnapshot": {
-    "asOf": "2026-11-19",
+    "asOf": "2026-11-20",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -145,15 +145,24 @@
     },
     {
       "year": 2026,
-      "internal": 86,
-      "customer": 39,
+      "internal": 85,
+      "customer": 40,
       "confidence": "live"
     }
   ],
   "launchHistory": [
     {
+      "id": "951a341f-236b-42fe-a667-4ab2fcf36eac",
+      "net": "2026-11-21T12:30:00Z",
+      "name": "Falcon 9 Block 5 | NROL-136",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
+    {
       "id": "76617033-4dc0-4448-b50c-e5b0d5a18539",
-      "net": "2026-11-20T04:32:55Z",
+      "net": "2026-11-21T02:32:00Z",
       "name": "Falcon 9 Block 5 | USSF-317",
       "pad": "Space Launch Complex 4E",
       "loc": "Vandenberg SFB, CA, USA",
@@ -1039,15 +1048,6 @@
       "name": "Falcon 9 Block 5 | EchoStar 25",
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
-      "rocket": "Falcon 9",
-      "status": "Success"
-    },
-    {
-      "id": "12e62caf-f4aa-4f28-a3bd-f9c8a44b707d",
-      "net": "2026-03-08T11:00:19Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 17-18",
-      "pad": "Space Launch Complex 4E",
-      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
