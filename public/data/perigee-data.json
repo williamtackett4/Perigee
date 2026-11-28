@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-11-27T16:43:42.918Z",
+  "generatedAt": "2026-11-28T15:36:12.024Z",
   "satelliteCensus": {
-    "asOf": "2026-11-26",
+    "asOf": "2026-11-28",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/star/stats.html",
     "totalLaunchedEver": 13122,
-    "totalInOrbit": 11195,
-    "totalWorking": 11181,
-    "broadbandWorking": 10545,
+    "totalInOrbit": 11188,
+    "totalWorking": 11174,
+    "broadbandWorking": 10538,
     "dtcWorking": 636
   },
   "starshieldCensus": {
-    "asOf": "2026-11-26",
+    "asOf": "2026-11-28",
     "source": "planet4589.org",
     "sourceUrl": "https://planet4589.org/space/con/stsh/stats.html",
     "totalLaunchedEver": 253,
@@ -19,7 +19,7 @@
     "totalWorking": 249
   },
   "boosterSnapshot": {
-    "asOf": "2026-11-27",
+    "asOf": "2026-11-28",
     "recordSerial": "B1067",
     "recordFlights": 37,
     "operationalCount": 22,
@@ -116,13 +116,13 @@
     {
       "year": 2021,
       "internal": 17,
-      "customer": 15,
+      "customer": 14,
       "confidence": "live"
     },
     {
       "year": 2022,
       "internal": 34,
-      "customer": 27,
+      "customer": 28,
       "confidence": "live"
     },
     {
@@ -140,17 +140,26 @@
     {
       "year": 2025,
       "internal": 123,
-      "customer": 43,
+      "customer": 44,
       "confidence": "live"
     },
     {
       "year": 2026,
       "internal": 86,
-      "customer": 41,
+      "customer": 42,
       "confidence": "live"
     }
   ],
   "launchHistory": [
+    {
+      "id": "b0d27def-0a88-44c3-a947-1fd5b8503e2c",
+      "net": "2026-11-29T04:39:03Z",
+      "name": "Falcon 9 Block 5 | USSF-380",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
+      "rocket": "Falcon 9",
+      "status": "Go"
+    },
     {
       "id": "460d9db7-eaf6-4cd9-b095-cff433534c09",
       "net": "2026-11-24T16:08:59Z",
@@ -1043,11 +1052,11 @@
       "status": "Success"
     },
     {
-      "id": "d44f47c7-5e3e-40fb-9d10-b6e851acf81a",
-      "net": "2026-03-13T14:57:59Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 17-31",
-      "pad": "Space Launch Complex 4E",
-      "loc": "Vandenberg SFB, CA, USA",
+      "id": "6f2868b8-1000-48e5-893b-700c1371b4fb",
+      "net": "2026-03-14T12:37:10Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 10-48",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -1943,11 +1952,11 @@
       "status": "Success"
     },
     {
-      "id": "e369a238-2746-4400-9396-62e8b7a660c5",
-      "net": "2025-08-14T12:29:30Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 10-20",
-      "pad": "Space Launch Complex 40",
-      "loc": "Cape Canaveral SFS, FL, USA",
+      "id": "d66bb4a0-cb32-45d8-81ba-d86e43dd3eb2",
+      "net": "2025-08-18T16:26:49Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 17-5",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -2830,6 +2839,15 @@
       "name": "Falcon 9 Block 5 | Starlink Group 12-12",
       "pad": "Space Launch Complex 40",
       "loc": "Cape Canaveral SFS, FL, USA",
+      "rocket": "Falcon 9",
+      "status": "Success"
+    },
+    {
+      "id": "f9308f6c-9576-4543-b2df-f5c0304c6a90",
+      "net": "2025-01-10T03:53:49Z",
+      "name": "Falcon 9 Block 5 | NROL-153",
+      "pad": "Space Launch Complex 4E",
+      "loc": "Vandenberg SFB, CA, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
@@ -5534,18 +5552,18 @@
       "status": "Success"
     },
     {
-      "id": "3ddb1934-2b57-489b-b5d2-31d4990604eb",
-      "net": "2022-01-06T21:49:10Z",
-      "name": "Falcon 9 Block 5 | Starlink Group 4-5",
-      "pad": "Launch Complex 39A",
-      "loc": "Kennedy Space Center, FL, USA",
+      "id": "c660df6f-7e33-4c90-a0f5-b27c8cb4c974",
+      "net": "2022-01-13T15:25:39Z",
+      "name": "Falcon 9 Block 5 | Transporter 3 (Dedicated SSO Rideshare)",
+      "pad": "Space Launch Complex 40",
+      "loc": "Cape Canaveral SFS, FL, USA",
       "rocket": "Falcon 9",
       "status": "Success"
     },
     {
-      "id": "878ba32c-5e93-4d2b-95c3-24b60c8b05e7",
-      "net": "2021-12-21T10:07:08Z",
-      "name": "Falcon 9 Block 5 | Dragon CRS-2 SpX-24",
+      "id": "3ddb1934-2b57-489b-b5d2-31d4990604eb",
+      "net": "2022-01-06T21:49:10Z",
+      "name": "Falcon 9 Block 5 | Starlink Group 4-5",
       "pad": "Launch Complex 39A",
       "loc": "Kennedy Space Center, FL, USA",
       "rocket": "Falcon 9",
